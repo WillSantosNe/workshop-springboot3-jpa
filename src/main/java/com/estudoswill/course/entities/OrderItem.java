@@ -82,5 +82,11 @@ public class OrderItem implements Serializable {
 		OrderItem other = (OrderItem) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
+	// Tem que colocar get antes por causa do JSON
+	public Double getSubTotal() {
+		return price * quantity;
+	}
 
 }

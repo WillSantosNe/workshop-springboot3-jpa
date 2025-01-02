@@ -49,6 +49,9 @@ public class Order implements Serializable{
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	
+	
+	
 	public Order() {}
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -127,6 +130,15 @@ public class Order implements Serializable{
 	}
 	
 	
+	public Double getTotal() {
+		Double sum = 0.0;
+		
+		for(OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		
+		return sum;
+	}
 	
 	
 }

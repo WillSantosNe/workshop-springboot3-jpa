@@ -28,4 +28,9 @@ public class UserService {
 		// Retorna objeto do tipo user de dentro do Optional
 		return obj.get();
 	}
+	
+	// Função para salvar no banco de dados e retornar o Usuário salvo
+	public User insert(User obj) {
+		return userRepository.save(obj);
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.estudoswill.course.entities.User;
 import com.estudoswill.course.repositories.UserRepository;
+import com.estudoswill.course.services.exceptions.ResourceNotFoundException;
 
 // Os services funcionam como uma ponte entre os controlares e o Repository
 
@@ -26,7 +27,8 @@ public class UserService {
 		Optional<User> obj = userRepository.findById(id);
 		
 		// Retorna objeto do tipo user de dentro do Optional
-		return obj.get();
+		// Tenta fazer o get, mas se der problema ele lança oa exceção 
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	// Função para salvar no banco de dados e retornar o Usuário salvo
